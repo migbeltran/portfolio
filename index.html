@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Miguel Beltran — Portfolio</title>
+<meta name="description" content="Technical professional showcasing self-built automation and reporting tools — FlowStudio, Bid Desk Dashboard, and the NYRR Volunteer Slot Tracker.">
+
+<!-- Open Graph (LinkedIn, Slack, iMessage, Facebook, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Miguel Beltran — Portfolio">
+<meta property="og:description" content="Technical professional showcasing self-built automation and reporting tools — FlowStudio, Bid Desk Dashboard, and the NYRR Volunteer Slot Tracker.">
+<meta property="og:image" content="https://YOUR-DOMAIN-HERE/og-image.png">
+<meta property="og:url" content="https://YOUR-DOMAIN-HERE/">
+
+<!-- Twitter/X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Miguel Beltran — Portfolio">
+<meta name="twitter:description" content="Technical professional showcasing self-built automation and reporting tools.">
+<meta name="twitter:image" content="https://YOUR-DOMAIN-HERE/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light dark;
+    --paper:#E9E6DE;
+    --paper-light:#F3F1EA;
+    --ink:#20241F;
+    --ink-soft:#4A4F47;
+    --teal:#1F6F63;
+    --amber:#C98A2E;
+    --line:#C9C4B6;
+    --max:760px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#151515;
+      --paper-light:#212121;
+      --ink:#EDEAE2;
+      --ink-soft:#A9A79C;
+      --teal:#1F6F63;
+      --amber:#E0A857;
+      --line:#3A3D33;
+    }
+  }
+  /* Manual overrides — win over system preference once user picks a mode */
+  html[data-theme="light"]{
+    --paper:#E9E6DE;
+    --paper-light:#F3F1EA;
+    --ink:#20241F;
+    --ink-soft:#4A4F47;
+    --teal:#1F6F63;
+    --amber:#C98A2E;
+    --line:#C9C4B6;
+  }
+  html[data-theme="dark"]{
+    --paper:#151515;
+    --paper-light:#212121;
+    --ink:#EDEAE2;
+    --ink-soft:#A9A79C;
+    --teal:#1F6F63;
+    --amber:#E0A857;
+    --line:#3A3D33;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; background:var(--paper);}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--teal);color:var(--paper-light);}
+  a{color:var(--teal);}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:var(--paper); border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    position:relative;
+    display:flex; justify-content:center; align-items:center;
+    padding-top:14px; padding-bottom:14px;
+  }
+  nav .links{display:flex; gap:22px; font-size:14px;}
+  nav .links a{color:var(--ink-soft); text-decoration:none;}
+  nav .links a:hover{color:var(--teal);}
+  .theme-toggle{
+    position:absolute; right:24px; top:50%; transform:translateY(-50%);
+    width:20px; height:20px;
+    background:none; border:none; color:var(--ink-soft);
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; cursor:pointer; padding:0; line-height:1;
+    opacity:0.75;
+  }
+  .theme-toggle:hover{color:var(--teal); opacity:1;}
+
+  /* Hero — simplified: name + contact meta only */
+  header.hero{padding:56px 0 44px; text-align:center;}
+  header.hero h1{
+    font-size:34px; margin:0 0 14px; line-height:1.15;
+    font-weight:700;
+  }
+  h2{font-size:22px; font-weight:700; margin:0 0 22px;}
+  header.hero h1{text-transform:uppercase; letter-spacing:0.03em;}
+  header.hero .meta{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:16px;
+    font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ink-soft);
+  }
+  header.hero .meta a{color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--line);}
+  header.hero .meta a:hover{color:var(--teal); border-color:var(--teal);}
+
+  section{padding:52px 0;}
+  #projects{border-top:1px solid var(--line);}
+  #experience{border-top:1px solid var(--line);}
+  .section-label{
+    font-family:'IBM Plex Sans', sans-serif; font-size:22px; font-weight:700;
+    color:var(--ink); letter-spacing:0; margin-bottom:22px;
+  }
+
+  #about p{font-size:16px; color:var(--ink-soft); text-align:justify;}
+
+  /* Project panels — bordered, own space per project, no unit IDs */
+  .project{
+    background:var(--paper-light);
+    border:1px solid var(--line);
+    padding:22px 24px 20px;
+    margin-bottom:24px;
+  }
+  .project h3{font-size:20px; margin:0 0 6px;}
+  .project-hook{color:var(--ink-soft); font-size:15px; margin:0 0 18px;}
+  .project-media{margin:0 0 20px;}
+  .project-media img{display:block; max-width:100%; border:1px solid var(--line);}
+  .project-media--mobile{text-align:center;}
+  .project-media--mobile img{max-width:240px; margin:0 auto;}
+  .media-caption{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft);
+    margin-top:8px;
+  }
+  .project-media--mobile .media-caption{text-align:center;}
+  .field{margin-bottom:16px;}
+  .field-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:700;
+    color:var(--ink); letter-spacing:0.06em;
+    margin-bottom:6px;
+  }
+  .field-value{font-size:15px;}
+  .field-value ul{margin:4px 0 0; padding-left:18px;}
+  .field-value li{margin-bottom:4px;}
+  details{cursor:pointer; margin-bottom:14px;}
+  details summary{
+    list-style:none; cursor:pointer;
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    color:var(--teal); padding:2px 0;
+    display:flex; align-items:center; gap:8px;
+  }
+  details summary::-webkit-details-marker{display:none;}
+  details summary::before{content:"+"; font-size:14px;}
+  details[open] summary::before{content:"–";}
+  details .field-value{margin-top:8px;}
+  .tools-line{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:700; color:var(--ink-soft);
+    padding-top:6px; border-top:1px solid var(--line);
+  }
+
+  .exp-row{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:16px 0; border-top:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .exp-row:first-child{border-top:none;}
+  .exp-role{font-weight:600;}
+  .exp-co{color:var(--ink-soft); font-size:14px;}
+  .exp-date{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .resume-btn{
+    display:inline-block; margin-top:22px;
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+    padding:10px 16px; border:1px solid var(--ink); color:var(--ink);
+    text-decoration:none;
+  }
+  .resume-btn:hover{background:var(--ink); color:#F3F1EA;}
+
+  .skill-group{margin-bottom:18px;}
+  .skill-group-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .pills{display:flex; flex-wrap:wrap; gap:8px;}
+  .pill{
+    font-size:13px; padding:5px 12px;
+    border:1px solid var(--line); color:var(--ink-soft);
+  }
+
+  #contact .wrap{padding-bottom:64px; text-align:center;}
+  #contact p{margin-left:auto; margin-right:auto;}
+  .contact-cta{
+    display:inline-block; margin-top:10px;
+    background:var(--teal); color:#F3F1EA;
+    padding:12px 22px; text-decoration:none;
+    font-family:'IBM Plex Mono', monospace; font-size:14px;
+  }
+  .contact-cta:hover{background:var(--ink); color:#F3F1EA;}
+  footer{
+    text-align:center; padding:24px 0; font-size:12px;
+    color:var(--ink-soft); font-family:'IBM Plex Mono', monospace;
+  }
+
+  @media (max-width:600px){
+    header.hero h1{font-size:28px;}
+    nav .links{gap:14px; font-size:13px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="links">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle dark mode"></button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Miguel Beltran</h1>
+    <div class="meta">
+      <span>+1 (725) 910-6067</span>
+      <a href="mailto:miguel.c.beltran@gmail.com">miguel.c.beltran@gmail.com</a>
+      <a href="https://linkedin.com/in/mig-beltran" target="_blank" rel="noopener">linkedin.com/in/mig-beltran</a>
+      <span>New York, NY</span>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-label">About</div>
+    <p>Technical Professional with 5+ years managing pre- and post-sales engagements and account relationships. Translates client requirements into actionable plans and configures workflows to support their goals.</p>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-label">Featured Projects</div>
+
+    <!-- FlowStudio -->
+    <div class="project">
+      <h3>FlowStudio</h3>
+      <p class="project-hook">A desktop app that turns finalized equipment selections into client-ready proposals in minutes.</p>
+      <div class="project-media">
+        <img src="flowstudio_demo.gif" alt="FlowStudio demo showing the app interface and a generated quote file" loading="lazy">
+        <div class="media-caption">FlowStudio's desktop interface — Proposal Generator and QuickQuote</div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">PROBLEM</div>
+        <div class="field-value">Once an equipment selection was finalized, estimators and sales engineers still had to manually rebuild that data into a formatted proposal. Headers, copying bill-of-materials tables from templates, and cross-checking exclusions were rewritten by hand with room for error at every step.</div>
+      </div>
+      <div class="field">
+        <div class="field-label">APPROACH</div>
+        <div class="field-value">Built a tool that utilizes openpyxl to parse selection reports and technical data, then auto-generates both the proposal document and bid summary in seconds. It was designed to slot into the existing workflow rather than replace it.</div>
+      </div>
+      <div class="field">
+        <div class="field-label">IMPACT</div>
+        <div class="field-value">
+          <ul>
+            <li>Cut proposal turnaround from ~20&ndash;30 min to ~5 min, about 75% faster</li>
+            <li>Delivered consistent scope and pricing across proposals</li>
+            <li>Freed up time previously spent on formatting for actual client-facing proposal strategy</li>
+            <li>Currently in pilot testing with 3 other team members</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tools-line">BUILT WITH — Python · openpyxl · pandas · document templating · Claude Code (dev &amp; testing)</div>
+    </div>
+
+    <!-- Bid Desk -->
+    <div class="project">
+      <h3>Bid Desk Dashboard</h3>
+      <p class="project-hook">A consolidated bid-pipeline reporting tool that turns Salesforce exports into a standing leadership snapshot.</p>
+
+      <div class="field">
+        <div class="field-label">PROBLEM</div>
+        <div class="field-value">Bid pipeline visibility lived inside Salesforce, but the data shifted daily with no consolidated view over time. Operations and sales managers needed to see where opportunities were slipping and understand total bid volume, which meant manually digging through dynamic reports with nothing to compare against.</div>
+      </div>
+      <div class="field">
+        <div class="field-label">APPROACH</div>
+        <div class="field-value">Created a Python script that ingests biweekly Salesforce report exports and consolidates them into a dashboard, sorting every project by pipeline stage.</div>
+      </div>
+      <div class="field">
+        <div class="field-label">IMPACT</div>
+        <div class="field-value">
+          <ul>
+            <li>Gave leadership a consistent, repeatable view into pipeline health every two weeks</li>
+            <li>Surfaced missed opportunities and stage-by-stage bottlenecks</li>
+            <li>Replaced manual digging with a standing reporting cadence</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tools-line">BUILT WITH — Python · Salesforce report exports · spreadsheet automation</div>
+    </div>
+
+    <!-- NYRR -->
+    <div class="project">
+      <h3>NYRR Volunteer Slot Tracker</h3>
+      <p class="project-hook">A monitoring and notification system built to catch volunteer slots the moment they open.</p>
+      <div class="project-media project-media--mobile">
+        <img src="nyrr_notification_demo.gif" alt="Push notification arriving on a phone when a volunteer slot opens" loading="lazy">
+        <div class="media-caption">Push notification the moment a slot opens</div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">PROBLEM</div>
+        <div class="field-value">Qualifying for guaranteed NYC Marathon entry through New York Road Runners' 9+1 volunteer program meant grabbing slots that open and fill within minutes, across multiple events at once. Manually checking 70+ roles every hour, all day, was not realistic.</div>
+      </div>
+      <div class="field">
+        <div class="field-label">APPROACH</div>
+        <div class="field-value">Built an automated monitoring system that scrapes NYRR's event pages and detects slot availability, then pushes notifications through ntfy.sh's API. Since GitHub's own scheduler wasn't reliable enough for checks this time-sensitive, an external service triggers the check on schedule via GitHub's REST API. The results are also fed into a dashboard that can be accessed at any time for a live status check across all tracked events.</div>
+      </div>
+      <div class="field">
+        <div class="field-label">IMPACT</div>
+        <div class="field-value">
+          <ul>
+            <li>Built a single-page dashboard to check availability across 70+ roles at a glance, instead of manually checking each one</li>
+            <li>Got real-time push notifications the moment a slot opened, closing the gap between availability and action</li>
+            <li>Successfully secured a volunteer slot, and got a second person onto the same shift</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tools-line">BUILT WITH — Python · GitHub REST API · ntfy.sh notification API · scheduled automation</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-label">Experience</div>
+
+    <div class="exp-row">
+      <div>
+        <div class="exp-role">Project Engineer</div>
+        <div class="exp-co">Daikin Applied — New York, NY</div>
+      </div>
+      <div class="exp-date">Jun 2023 – Present</div>
+    </div>
+    <div class="exp-row">
+      <div>
+        <div class="exp-role">Broadcast Engineer</div>
+        <div class="exp-co">Major League Baseball — New York, NY</div>
+      </div>
+      <div class="exp-date">Mar 2023 – Oct 2023</div>
+    </div>
+    <div class="exp-row">
+      <div>
+        <div class="exp-role">Technical Engineer</div>
+        <div class="exp-co">Russell Sigler, Inc. — Las Vegas, NV</div>
+      </div>
+      <div class="exp-date">Jan 2022 – Dec 2022</div>
+    </div>
+
+    <a class="resume-btn" href="BeltranResume.pdf" download>Download full resume (PDF) →</a>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-label">Skills &amp; Tools</div>
+
+    <div class="skill-group">
+      <div class="skill-group-label">PROJECT MANAGEMENT &amp; CRM</div>
+      <div class="pills">
+        <span class="pill">Salesforce</span><span class="pill">Slack</span><span class="pill">Asana</span><span class="pill">Jira</span><span class="pill">Microsoft Office</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">TECHNICAL</div>
+      <div class="pills">
+        <span class="pill">Python</span><span class="pill">API and REST Integrations (working familiarity)</span><span class="pill">AI-assisted Workflows (Claude, MCP tooling)</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">CORE COMPETENCIES</div>
+      <div class="pills">
+        <span class="pill">Client Relationship Management</span><span class="pill">Escalation Management</span><span class="pill">Cross-functional Coordination</span><span class="pill">Technical Documentation</span><span class="pill">Data Automation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="text-align:center;">
+  <div class="wrap">
+    <div class="section-label">Let's Chat!</div>
+    <a class="contact-cta" href="mailto:miguel.c.beltran@gmail.com">Email me →</a>
+  </div>
+</section>
+
+<footer>MIGUEL BELTRAN — NEW YORK, NY</footer>
+
+<script>
+  (function(){
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle-btn');
+    var sunIcon = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="1.5" x2="12" y2="3.5"></line><line x1="12" y1="20.5" x2="12" y2="22.5"></line><line x1="3.5" y1="12" x2="1.5" y2="12"></line><line x1="22.5" y1="12" x2="20.5" y2="12"></line><line x1="18.7" y1="5.3" x2="17.3" y2="6.7"></line><line x1="6.7" y1="17.3" x2="5.3" y2="18.7"></line><line x1="18.7" y1="18.7" x2="17.3" y2="17.3"></line><line x1="6.7" y1="6.7" x2="5.3" y2="5.3"></line></svg>';
+    var moonIcon = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"></path></svg>';
+    function systemPref(){
+      return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    var current = systemPref();
+    function apply(theme){
+      root.setAttribute('data-theme', theme);
+      if(btn){ btn.innerHTML = theme === 'dark' ? sunIcon : moonIcon; }
+    }
+    apply(current);
+    function handleToggle(){
+      current = current === 'dark' ? 'light' : 'dark';
+      apply(current);
+    }
+    if(btn){
+      btn.addEventListener('click', handleToggle);
+    }
+  })();
+</script>
+</body>
+</html>
